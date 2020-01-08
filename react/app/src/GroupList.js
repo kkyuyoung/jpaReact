@@ -39,17 +39,17 @@ class GroupList extends Component {
     }
 
     const groupList = groups.map(group => {
-      const address = `${group.address || ''} ${group.city || ''} ${group.stateOrProvince || ''}`;
+      const address = `${group.address || ''}`;
       return <tr key={group.id}>
         <td style={{whiteSpace: 'nowrap'}}>{group.name}</td>
         <td>{address}</td>
         <td>{group.orders.map(order => {
-          return <div key={order.id}>{order.id}. {order.orderName} : {order.price}원</div>
+          return <div key={order.id}>{order.orderName} : {order.price}원</div>
         })}</td>
         <td>
           <ButtonGroup>
-            <Button size="sm" color="primary" tag={Link} to={"/groups/" + group.id}>Edit</Button>
-            <Button size="sm" color="danger" onClick={() => this.remove(group.id)}>Delete</Button>
+            <Button size="sm" color="primary" tag={Link} to={"/groups/" + group.id}>수정</Button>
+            <Button size="sm" color="danger" onClick={() => this.remove(group.id)}>삭제</Button>
           </ButtonGroup>
         </td>
       </tr>
@@ -59,7 +59,7 @@ class GroupList extends Component {
       <div>
         <Container fluid>
           <div className="float-right">
-            <Button color="success" tag={Link} to="/groups/new">Add Group</Button>
+            <Button color="success" tag={Link} to="/groups/new">Add User</Button>
           </div>
           <h3>SpringBoot + JPA + REACT</h3>
           <Table className="mt-4">

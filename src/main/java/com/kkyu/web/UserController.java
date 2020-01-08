@@ -18,45 +18,45 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.kkyu.model.Group;
-import com.kkyu.model.GroupRepository;
+import com.kkyu.model.User;
+import com.kkyu.model.UserRepository;
 
 @RestController
 @RequestMapping("/api")
-class GroupController {
+class UserController {
 
-    private GroupRepository groupRepository;
+    private UserRepository groupRepository;
 
-    public GroupController(GroupRepository groupRepository) {
+    public UserController(UserRepository groupRepository) {
         this.groupRepository = groupRepository;
     }
 
     //전체 조회
     @GetMapping("/groups")
-    Collection<Group> groups() {
+    Collection<User> groups() {
         return groupRepository.findAll();
     }
 
     //상세조회
     @GetMapping("/group/{id}")
     ResponseEntity<?> getGroup(@PathVariable Long id) {
-        Optional<Group> group = groupRepository.findById(id);
+        Optional<User> group = groupRepository.findById(id);
         return group.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     //등록
     @PostMapping("/group/{id}")
-    ResponseEntity<Group> createGroup(@Valid @RequestBody Group group) throws URISyntaxException {
-        Group result = groupRepository.save(group);
+    ResponseEntity<User> createGroup(@Valid @RequestBody User group) throws URISyntaxException {
+        User result = groupRepository.save(group);
         return ResponseEntity.created(new URI("/api/group/" + result.getId()))
                 .body(result);
     }
 
     //수정
     @PutMapping("/group/{id}")
-    ResponseEntity<Group> updateGroup(@Valid @RequestBody Group group) {
-        Group result = groupRepository.save(group);
+    ResponseEntity<User> updateGroup(@Valid @RequestBody User group) {
+        User result = groupRepository.save(group);
         return ResponseEntity.ok().body(result);
     }
 

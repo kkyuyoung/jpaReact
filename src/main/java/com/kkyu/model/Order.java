@@ -19,7 +19,6 @@ import java.time.Instant;
 @Entity
 @Table(name = "tb_order")
 public class Order {
-
     @Id
     @GeneratedValue
     private Long id;
