@@ -7,10 +7,6 @@ class GroupEdit extends Component {
   emptyItem = {
     name: '',
     address: '',
-    city: '',
-    stateOrProvince: '',
-    country: '',
-    postalCode: ''
   };
 
   constructor(props) {

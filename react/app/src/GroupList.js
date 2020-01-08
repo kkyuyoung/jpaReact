@@ -44,7 +44,7 @@ class GroupList extends Component {
         <td style={{whiteSpace: 'nowrap'}}>{group.name}</td>
         <td>{address}</td>
         <td>{group.orders.map(order => {
-          return <div key={order.id}>{order.orderName} : {order.price}원</div>
+          return <div>{order.orderName} : {order.price}원</div>
         })}</td>
         <td>
           <ButtonGroup>

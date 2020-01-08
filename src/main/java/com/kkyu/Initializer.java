@@ -1,6 +1,7 @@
 package com.kkyu;
 
-import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
@@ -25,15 +26,23 @@ class Initializer implements CommandLineRunner {
         Stream.of("한규영", "홍길동", "강감찬").forEach(name ->
                 repository.save(new User(name))
         );
+
         User user = repository.findByName("한규영");
-        Order order = Order.builder().orderName("아이스 아메리카노")
+        Order order = Order.builder().orderName("아메리카노")
                 .price(900)
                 .build();
+        
+        Order order2 = Order.builder().orderName("카페라떼")
+                .price(1200)
+                .build();
 
-        user.setOrders(Collections.singleton(order));
+        Set<Order> orders = new HashSet<>();
+        orders.add(order);
+        orders.add(order2);
+        
+        user.setOrders(orders);
         
         repository.save(user);
 
-        repository.findAll().forEach(System.out::println);
     }
 }

@@ -25,22 +25,22 @@ import com.kkyu.model.UserRepository;
 @RequestMapping("/api")
 class UserController {
 
-    private UserRepository groupRepository;
+    private UserRepository userRepository;
 
-    public UserController(UserRepository groupRepository) {
-        this.groupRepository = groupRepository;
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     //전체 조회
     @GetMapping("/groups")
     Collection<User> groups() {
-        return groupRepository.findAll();
+        return userRepository.findAll();
     }
 
     //상세조회
     @GetMapping("/group/{id}")
     ResponseEntity<?> getGroup(@PathVariable Long id) {
-        Optional<User> group = groupRepository.findById(id);
+        Optional<User> group = userRepository.findById(id);
         return group.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -48,7 +48,7 @@ class UserController {
     //등록
     @PostMapping("/group/{id}")
     ResponseEntity<User> createGroup(@Valid @RequestBody User group) throws URISyntaxException {
-        User result = groupRepository.save(group);
+        User result = userRepository.save(group);
         return ResponseEntity.created(new URI("/api/group/" + result.getId()))
                 .body(result);
     }
@@ -56,14 +56,14 @@ class UserController {
     //수정
     @PutMapping("/group/{id}")
     ResponseEntity<User> updateGroup(@Valid @RequestBody User group) {
-        User result = groupRepository.save(group);
+        User result = userRepository.save(group);
         return ResponseEntity.ok().body(result);
     }
 
     //삭제
     @DeleteMapping("/group/{id}")
     public ResponseEntity<?> deleteGroup(@PathVariable Long id) {
-        groupRepository.deleteById(id);
+        userRepository.deleteById(id);
         return ResponseEntity.ok().build();
     }
 }

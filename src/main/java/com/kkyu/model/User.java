@@ -29,6 +29,6 @@ public class User {
     private String name;
     private String address;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
     private Set<Order> orders;
 }
