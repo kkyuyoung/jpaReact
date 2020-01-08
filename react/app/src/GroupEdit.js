@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
-class UserEdit extends Component {
+class GroupEdit extends Component {
 
   emptyItem = {
     name: '',
@@ -24,8 +24,8 @@ class UserEdit extends Component {
 
   async componentDidMount() {
     if (this.props.match.params.id !== 'new') {
-      const user = await (await fetch(`/api/user/${this.props.match.params.id}`)).json();
-      this.setState({item: user});
+      const group = await (await fetch(`/api/group/${this.props.match.params.id}`)).json();
+      this.setState({item: group});
     }
   }
 
@@ -42,7 +42,7 @@ class UserEdit extends Component {
     event.preventDefault();
     const {item} = this.state;
 
-    await fetch('/api/user/'+(item.id), {
+    await fetch('/api/group/'+(item.id), {
       method: (item.id) ? 'PUT' : 'POST',
       headers: {
         'Accept': 'application/json',
@@ -55,7 +55,7 @@ class UserEdit extends Component {
 
   render() {
     const {item} = this.state;
-    const title = <h2>{item.id ? 'Edit User' : 'Add User'}</h2>;
+    const title = <h2>{item.id ? 'Edit Group' : 'Add Group'}</h2>;
 
     return <div>
       <Container>
@@ -103,4 +103,4 @@ class UserEdit extends Component {
   }
 }
 
-export default withRouter(UserEdit);
+export default withRouter(GroupEdit);

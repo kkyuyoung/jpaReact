@@ -1,14 +1,16 @@
 package com.kkyu.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor
@@ -23,5 +25,4 @@ public class Order {
     private Long id;
     private String orderName;
     private int price;
-
 }

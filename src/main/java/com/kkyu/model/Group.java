@@ -1,6 +1,6 @@
 package com.kkyu.model;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,8 +19,8 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @Entity
-@Table(name = "tb_user")
-public class User {
+@Table(name = "tb_group")
+public class Group {
 
     @Id
     @GeneratedValue
@@ -33,6 +33,6 @@ public class User {
     private String country;
     private String postalCode;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Order> orders;
+    @OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    private List<Order> orders;
 }
